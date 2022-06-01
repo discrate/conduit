@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from input_test_data import *
 
 
-class test_Conduit(object):
+class TestConduit(object):
     def setup(self):
         browser_options = Options()
         browser_options.headless = True
