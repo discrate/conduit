@@ -92,7 +92,7 @@ class TestConduit(object):
         password_input.send_keys(user1["password"])
         sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
         sign_in_btn.click()
-        time.sleep(4)
+        time.sleep(4)   # 2 secről növelve, hátha a user_profile sor jó, de failed
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
         try:
             assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
