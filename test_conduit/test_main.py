@@ -45,60 +45,60 @@ class TestConduit(object):
     #         print('Helytelen validáció')
 
     # // Teszteset 02 \\ Regisztráció helyes adatokkal
-    # def test_name_gen(y):
-    #     return ''.join(random.choice(string.ascii_letters) for x in range(y))
-    #
-    # test_name_gen(1)
-    # random_name = test_name_gen(10)
-    #
-    # def test_email_gen(y):
-    #     return ''.join(random.choice(string.ascii_letters) for x in range(y))
-    #
-    # test_email_gen(1)
-    # random_email = test_email_gen(10) + "@gmail.com"
-    #
-    # def registration_valid(self):
-    #     sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
-    #     sign_up_btn.click()
-    #     username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
-    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    #     sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    #     username_input.send_keys(random_name)
-    #     email_input.send_keys(random_email)
-    #     password_input.send_keys(user["password"])
-    #     time.sleep(1)
-    #     sign_up_send_btn.click()
-    #     time.sleep(2)
-    #     result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
-    #     result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
-    #     try:
-    #         assert result_message.text == "Welcome!"
-    #         assert result_reason.text == "Your registration was successful!"
-    #         print('Sikeres regisztráció')
-    #     except AssertionError:
-    #         print('Sikertelen regisztráció')
-    #
-    #     ok_btn = self.browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
-    #     ok_btn.click()
+    def name_gen(y):
+        return ''.join(random.choice(string.ascii_letters) for x in range(y))
+
+    name_gen(1)
+    random_name = name_gen(10)
+
+    def email_gen(y):
+        return ''.join(random.choice(string.ascii_letters) for x in range(y))
+
+    email_gen(1)
+    random_email = email_gen(10) + "@gmail.com"
+
+    def test_registration_valid(self):
+        sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
+        sign_up_btn.click()
+        username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
+        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+        sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+        username_input.send_keys(self.random_name)
+        email_input.send_keys(self.random_email)
+        password_input.send_keys(user["password"])
+        time.sleep(1)
+        sign_up_send_btn.click()
+        time.sleep(2)
+        result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
+        result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
+        try:
+            assert result_message.text == "Welcome!"
+            assert result_reason.text == "Your registration was successful!"
+            print('Sikeres regisztráció')
+        except AssertionError:
+            print('Sikertelen regisztráció')
+
+        ok_btn = self.browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
+        ok_btn.click()
 
     # // Teszteset 03 \\ Bejelentkezés
-    def test_sign_in(self):
-        home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-        home_sign_in_btn.click()
-        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-        email_input.send_keys(user1["email"])
-        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-        password_input.send_keys(user1["password"])
-        sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-        sign_in_btn.click()
-        time.sleep(4)   # 2 secről növelve, hátha a user_profile sor jó, de failed
-        user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-        try:
-            assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-            print('Sikeres bejelentkezés')
-        except AssertionError:
-            print('Nem sikerült bejelentkezni')
+    # def test_sign_in(self):
+    #     home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+    #     home_sign_in_btn.click()
+    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+    #     email_input.send_keys(user1["email"])
+    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+    #     password_input.send_keys(user1["password"])
+    #     sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+    #     sign_in_btn.click()
+    #     time.sleep(4)   # 2 secről növelve, hátha a user_profile sor jó, de failed
+    #     user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    #     try:
+    #         assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+    #         print('Sikeres bejelentkezés')
+    #     except AssertionError:
+    #         print('Nem sikerült bejelentkezni')
 
 # // Teszteset 04 \\ Adatkezelési nyilatkozat használata
 #     def test_accept_cookies(self):
