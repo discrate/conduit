@@ -1,0 +1,50 @@
+name: ConduitREMEK
+
+on:
+  push:
+    branches: 
+      - master 
+
+jobs:
+  conduit-selenium-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker build for test
+      run: docker-compose up -d
+    
+    - name: Sleep for 60 seconds
+      run: sleep 60s
+      shell: bash
+
+    - name: Set up Python. Version 3.9.5
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9.5
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f test_conduit/requirements.txt ]; 
+        then pip install -r test_conduit/requirements.txt; fi
+    
+    - name: Test with pytest
+      run: |
+        pytest --alluredir=allure-results
+        
+    - name: Allure Report action from marketplace
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 20
+    
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
