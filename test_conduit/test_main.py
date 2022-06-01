@@ -7,7 +7,7 @@ import random
 import string
 from selenium.webdriver.chrome.options import Options
 
-from test_conduit.input_test_data import *
+from input_test_data import *
 
 
 class Conduit(object):
