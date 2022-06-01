@@ -83,34 +83,34 @@ class TestConduit(object):
     #     ok_btn.click()
 
     # // Teszteset 03 \\ Bejelentkezés
-    def test_sign_in(self):
-        home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-        home_sign_in_btn.click()
-        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-        email_input.send_keys(user1["email"])
-        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-        password_input.send_keys(user1["password"])
-        sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-        sign_in_btn.click()
-        time.sleep(2)
-        user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-        try:
-            assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-            print('Sikeres bejelentkezés')
-        except AssertionError:
-            print('Nem sikerült bejelentkezni')
+    # def test_sign_in(self):
+    #     home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+    #     home_sign_in_btn.click()
+    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+    #     email_input.send_keys(user1["email"])
+    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+    #     password_input.send_keys(user1["password"])
+    #     sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+    #     sign_in_btn.click()
+    #     time.sleep(2)
+    #     user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    #     try:
+    #         assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+    #         print('Sikeres bejelentkezés')
+    #     except AssertionError:
+    #         print('Nem sikerült bejelentkezni')
 
 # // Teszteset 04 \\ Adatkezelési nyilatkozat használata
-#     def test_accept_cookies(self):
-#         accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
-#         accept_btn.click()
-#         time.sleep(1)
-#         decline_btn_list = self.browser.find_elements_by_xpath('//div[normalize-space()="I decline!"]')
-#         print(len(decline_btn_list))
-#         try:
-#             assert len(decline_btn_list) == 0
-#         except AssertionError:
-#             print('Hiba merült fel a cookie-kal kapcsolatban.')
+    def test_accept_cookies(self):
+        accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
+        accept_btn.click()
+        time.sleep(1)
+        decline_btn_list = self.browser.find_elements_by_xpath('//div[normalize-space()="I decline!"]')
+        print(len(decline_btn_list))
+        try:
+            assert len(decline_btn_list) == 0
+        except AssertionError:
+            print('Hiba merült fel a cookie-kal kapcsolatban.')
 
 # // Teszteset 05 \\ Adatok listázása
 
