@@ -6,42 +6,47 @@ import random
 import string
 
 browser = webdriver.Chrome(ChromeDriverManager().install())
+browser.implicitly_wait(10)
 browser.get("http://localhost:1667/#/")
 browser.maximize_window()
 
 
-# def sign_in():
-#     home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-#     home_sign_in_btn.click()
-#     email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
-#     email_input.send_keys(user1["email"])
-#     password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
-#     password_input.send_keys(user1["password"])
-#     sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-#     sign_in_btn.click()
-#     time.sleep(2)
-#     user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-#     try:
-#         assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-#         print('Sikeres bejelentkezés')
-#     except AssertionError:
-#         print('Nem sikerült bejelentkezni')
+def sign_in():
+    home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+    home_sign_in_btn.click()
+    email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
+    email_input.send_keys(user1["email"])
+    password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
+    password_input.send_keys(user1["password"])
+    sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+    sign_in_btn.click()
+    time.sleep(2)
+    user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    print(user_profile.text)
+    try:
+        assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+        print('Sikeres bejelentkezés')
+    except AssertionError:
+        print('Nem sikerült bejelentkezni')
+
+
+sign_in()
 
 # // Teszteset 05 \\ Adatok listázása
-def popular_tag_list():
-    popular_tags = browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
-    list_of_tags = []
-    for i, j in enumerate(popular_tags):
-        list_of_tags.append(f'{i + 1}. elem: {j.text}')
-    print(f'Popular Tags: {list_of_tags}')
-    try:
-        assert len(list_of_tags) == len(popular_tags)
-        print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
-    except AssertionError:
-        print('Helytelen lista')
-
-
-popular_tag_list()
+# def popular_tag_list():
+#     popular_tags = browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
+#     list_of_tags = []
+#     for i, j in enumerate(popular_tags):
+#         list_of_tags.append(f'{i + 1}. elem: {j.text}')
+#     print(f'Popular Tags: {list_of_tags}')
+#     try:
+#         assert len(list_of_tags) == len(popular_tags)
+#         print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
+#     except AssertionError:
+#         print('Helytelen lista')
+#
+#
+# popular_tag_list()
 
 # // Teszteset 07 \\ Új adatbevitel
 
