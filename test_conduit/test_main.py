@@ -129,7 +129,8 @@ class TestConduit(object):
         article_tag.send_keys(article['tag'])
         publish_article_btn = self.browser.find_element_by_xpath('//button[@type="submit"]')
         publish_article_btn.click()
-        time.sleep(2)
+        self.browser.implicitly_wait(3)
+        # time.sleep(2)
         created_body = self.browser.find_element_by_xpath('//p')
         try:
             assert created_body.text == article['body']
