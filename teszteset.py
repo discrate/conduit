@@ -11,6 +11,10 @@ browser.maximize_window()
 
 
 # // Teszteset 05 \\ Adatok listázása
+
+
+
+
 # // Teszteset 07 \\ Új adatbevitel
 
 

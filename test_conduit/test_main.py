@@ -89,7 +89,8 @@ class TestConduit(object):
         password_input.send_keys(user1["password"])
         sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
         sign_in_btn.click()
-        time.sleep(4)  # 2 secről növelve, hátha a user_profile sor jó, de failed
+        self.browser.implicitly_wait(3)
+        # time.sleep(4)  # 2 secről növelve, hátha a user_profile sor jó, de failed
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
         try:
             assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
@@ -129,8 +130,7 @@ class TestConduit(object):
         article_tag.send_keys(article['tag'])
         publish_article_btn = self.browser.find_element_by_xpath('//button[@type="submit"]')
         publish_article_btn.click()
-        self.browser.implicitly_wait(3)
-        # time.sleep(2)
+        time.sleep(2)
         created_body = self.browser.find_element_by_xpath('//p')
         try:
             assert created_body.text == article['body']
