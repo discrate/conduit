@@ -92,6 +92,7 @@ class TestConduit(object):
         sign_in_btn.click()
         time.sleep(2)
         user_profile = self.browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
+        time.sleep(2)
         try:
             assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
             print('Sikeres bejelentkezés')
