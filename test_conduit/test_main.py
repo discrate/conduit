@@ -128,6 +128,7 @@ class TestConduit(object):
     # // Teszteset 07 \\ Több oldalas lista bejárása
 
     def test_page_navigation(self):
+        TestConduit.test_sign_in(self)
         index_page_list = self.browser.find_elements_by_xpath('//a[@class="page-link"]')
         for i in range(len(index_page_list)):
             page_button = index_page_list[i]
