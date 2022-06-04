@@ -23,16 +23,16 @@ def sign_in():
     time.sleep(2)
     user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
     print(user_profile.text)
-    try:
-        assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-        print('Sikeres bejelentkezés')
-    except AssertionError:
-        print('Nem sikerült bejelentkezni')
+    # try:
+    #     assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+    #     print('Sikeres bejelentkezés')
+    # except AssertionError:
+    #     print('Nem sikerült bejelentkezni')
 
 
 #
 #
-# sign_in()
+sign_in()
 
 # // Teszteset 05 \\ Adatok listázása
 def popular_tag_list():
@@ -54,17 +54,17 @@ def popular_tag_list():
 
 # // Teszteset 07 \\ Több oldalas lista bejárása
 
-def page_navigation():
-    index_page_list = browser.find_elements_by_xpath('//a[@class="page-link"]')
-    for i in range(len(index_page_list)):
-        page_button = index_page_list[i]
-        page_button.click()
-
-    assert index_page_list[len(index_page_list) - 1].text == f'{len(index_page_list)}'
-
-
-sign_in()
-page_navigation()
+# def page_navigation():
+#     index_page_list = browser.find_elements_by_xpath('//a[@class="page-link"]')
+#     for i in range(len(index_page_list)):
+#         page_button = index_page_list[i]
+#         page_button.click()
+#
+#     assert index_page_list[- 1].text == f'{len(index_page_list)}'
+#
+#
+# sign_in()
+# page_navigation()
 # // Teszteset 07 \\ Új adatbevitel
 
 # def adding_new_input():
