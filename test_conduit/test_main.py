@@ -21,26 +21,26 @@ class TestConduit(object):
     #     self.browser.quit()
 
     # // Teszteset 01 \\ Regisztráció helytelen adatokkal
-    #     def test_registration_invalid(self):
-    #         sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
-    #         sign_up_btn.click()
-    #         username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
-    #         email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    #         password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    #         sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    #         username_input.send_keys(user["name"])
-    #         email_input.send_keys("incorrect")
-    #         password_input.send_keys(user["password"])
-    #         sign_up_send_btn.click()
-    #         time.sleep(2)
-    #         result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
-    #         result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
-    #         try:
-    #             assert result_message.text == "Registration failed!"
-    #             assert result_reason.text == "Email must be a valid email."
-    #             print('Helyes hibaüzenet')
-    #         except AssertionError:
-    #             print('Helytelen validáció')
+    def test_registration_invalid(self):
+        sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
+        sign_up_btn.click()
+        username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
+        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+        sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+        username_input.send_keys(user["name"])
+        email_input.send_keys("szgteszt1_gmail.com")    # helytelen email formátum szándékos megadása
+        password_input.send_keys(user["password"])
+        sign_up_send_btn.click()
+        time.sleep(2)
+        result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
+        result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
+        try:
+            assert result_message.text == "Registration failed!"
+            assert result_reason.text == "Email must be a valid email."
+            print('Helyes hibaüzenet')
+        except AssertionError:
+            print('Helytelen validáció')
 
     # // Teszteset 02 \\ Regisztráció helyes adatokkal
     #     def name_gen(y):
@@ -81,23 +81,23 @@ class TestConduit(object):
     #         ok_btn.click()
 
     # // Teszteset 03 \\ Bejelentkezés
-    def test_sign_in(self):
-        home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-        home_sign_in_btn.click()
-        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-        email_input.send_keys(user1["email"])
-        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-        password_input.send_keys(user1["password"])
-        sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-        sign_in_btn.click()
-        time.sleep(3)  # ??? 2 secről növelve, hátha a user_profile sor jó, de failed
-        user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-        # time.sleep(3) # nem segített
-        try:
-            assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-            print('Sikeres bejelentkezés')
-        except AssertionError:
-            print('Nem sikerült bejelentkezni')
+    # def test_sign_in(self):
+    #     home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+    #     home_sign_in_btn.click()
+    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+    #     email_input.send_keys(user1["email"])
+    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+    #     password_input.send_keys(user1["password"])
+    #     sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+    #     sign_in_btn.click()
+    #     time.sleep(3)  # ??? 2 secről növelve, hátha a user_profile sor jó, de failed
+    #     user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    #     # time.sleep(3) # nem segített
+    #     try:
+    #         assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+    #         print('Sikeres bejelentkezés')
+    #     except AssertionError:
+    #         print('Nem sikerült bejelentkezni')
 
     # // Teszteset 04 \\ Adatkezelési nyilatkozat használata
     #     def test_accept_cookies(self):

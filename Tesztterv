@@ -6,7 +6,7 @@ ER  03. Bejelentkezés -----> sign_in()  GIT: IndexError: list index out of rang
 OK  04. Adatkezelési nyilatkozat használata -----> test_accept_cookies()
 OK  05. Adatok listázása -----> test_popular_tag_list
     06. Több oldalas lista bejárása
-    07. Új adat bevitel
+ER  07. Új adat bevitel  (sign in miatt)
     08. Ismételt és sorozatos adatbevitel adatforrásból
     09. Meglevő adat módosítás
     10. Adat vagy adatok törlése
