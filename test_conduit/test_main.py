@@ -132,7 +132,7 @@ class TestConduit(object):
         for i in range(len(index_page_list)):
             page_button = index_page_list[i]
             page_button.click()
-
+        time.sleep(1)
         try:
             assert index_page_list[-1].text == f'{len(index_page_list)}'
             print('Számozás rendben')
