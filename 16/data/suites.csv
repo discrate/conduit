@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Fri Jun 03 21:05:01 GMT 2022","Fri Jun 03 21:05:05 GMT 2022","3511","test_conduit","test_main","TestConduit","","","test_sign_in",""
