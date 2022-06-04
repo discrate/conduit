@@ -30,26 +30,42 @@ def sign_in():
         print('Nem sikerült bejelentkezni')
 
 
-sign_in()
+#
+#
+# sign_in()
 
 # // Teszteset 05 \\ Adatok listázása
-# def popular_tag_list():
-#     popular_tags = browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
-#     list_of_tags = []
-#     for i, j in enumerate(popular_tags):
-#         list_of_tags.append(f'{i + 1}. elem: {j.text}')
-#     print(f'Popular Tags: {list_of_tags}')
-#     try:
-#         assert len(list_of_tags) == len(popular_tags)
-#         print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
-#     except AssertionError:
-#         print('Helytelen lista')
-#
+def popular_tag_list():
+    popular_tags = browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
+    list_of_tags = []
+    for i, j in enumerate(popular_tags):
+        list_of_tags.append(f'{i + 1}. elem: {j.text}')
+    print(f'Popular Tags: {list_of_tags}')
+    try:
+        assert len(list_of_tags) == len(popular_tags)
+        print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
+    except AssertionError:
+        print('Helytelen lista')
+
+
 #
 # popular_tag_list()
 
-# // Teszteset 07 \\ Új adatbevitel
 
+# // Teszteset 07 \\ Több oldalas lista bejárása
+
+def page_navigation():
+    index_page_list = browser.find_elements_by_xpath('//a[@class="page-link"]')
+    for i in range(len(index_page_list)):
+        page_button = index_page_list[i]
+        page_button.click()
+
+    assert index_page_list[len(index_page_list) - 1].text == f'{len(index_page_list)}'
+
+
+sign_in()
+page_navigation()
+# // Teszteset 07 \\ Új adatbevitel
 
 # def adding_new_input():
 #     new_article_btn = browser.find_element_by_xpath('//a[@href="#/editor"]')
@@ -73,7 +89,6 @@ sign_in()
 #     except AssertionError:
 #         print('Helytelen cikk')
 
-
 # sign_in()
 # adding_new_input()
 
@@ -83,6 +98,5 @@ sign_in()
 #     print('Helyes hibaüzenet')
 # except AssertionError:
 #     print('Helytelen validáció')
-
 
 # browser.quit()
