@@ -1,7 +1,7 @@
 import time
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from test_conduit.input_test_data import article, user1
+from test_conduit.input_test_data import *
 import random
 import string
 
@@ -21,20 +21,23 @@ def sign_in():
     sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
     sign_in_btn.click()
     time.sleep(2)
-    user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    # user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    user_profile = browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
     print(user_profile.text)
-    # try:
-    #     assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-    #     print('Sikeres bejelentkezés')
-    # except AssertionError:
-    #     print('Nem sikerült bejelentkezni')
+
+    try:
+        assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+        print('Sikeres bejelentkezés')
+    except AssertionError:
+        print('Nem sikerült bejelentkezni')
 
 
-#
-#
 sign_in()
 
+
 # // Teszteset 05 \\ Adatok listázása
+
+
 def popular_tag_list():
     popular_tags = browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
     list_of_tags = []
@@ -46,7 +49,6 @@ def popular_tag_list():
         print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
     except AssertionError:
         print('Helytelen lista')
-
 
 #
 # popular_tag_list()
