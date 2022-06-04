@@ -127,18 +127,18 @@ class TestConduit(object):
 
     # // Teszteset 07 \\ Több oldalas lista bejárása
 
-    def test_page_navigation(self):
-        TestConduit.test_sign_in(self)
-        index_page_list = self.browser.find_elements_by_xpath('//a[@class="page-link"]')
-        for i in range(len(index_page_list)):
-            page_button = index_page_list[i]
-            page_button.click()
-        time.sleep(1)
-        try:
-            assert index_page_list[-1].text == f'{len(index_page_list)}'
-            print('Számozás rendben')
-        except AssertionError:
-            print('Számozás nincs rendben')
+    # def test_page_navigation(self):
+    #     TestConduit.test_sign_in(self)
+    #     index_page_list = self.browser.find_elements_by_xpath('//a[@class="page-link"]')
+    #     for i in range(len(index_page_list)):
+    #         page_button = index_page_list[i]
+    #         page_button.click()
+    #     time.sleep(1)
+    #     try:
+    #         assert index_page_list[-1].text == f'{len(index_page_list)}'
+    #         print('Számozás rendben')
+    #     except AssertionError:
+    #         print('Számozás nincs rendben')
 
     # // Teszteset 07 \\ Új adatbevitel
 
