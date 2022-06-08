@@ -11,13 +11,59 @@ browser.get("http://localhost:1667/#/")
 browser.maximize_window()
 
 
+# // Teszteset 02 \\ Regisztráció helyes adatokkal
+
+def name_gen(y):
+    return ''.join(random.choice(string.ascii_letters) for x in range(y))
+
+
+name_gen(1)
+random_name = name_gen(10)
+
+
+def email_gen(y):
+    return ''.join(random.choice(string.ascii_letters) for x in range(y))
+
+
+email_gen(1)
+random_email = email_gen(10) + "@gmail.com"
+
+
+def registration_valid():
+    sign_up_btn = browser.find_element_by_xpath('//a[@href="#/register"]')
+    sign_up_btn.click()
+    username_input = browser.find_element_by_xpath('//input[@placeholder="Username"]')
+    email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
+    password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
+    sign_up_send_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+    username_input.send_keys(random_name)
+    email_input.send_keys(random_email)
+    password_input.send_keys(user["password"])
+    time.sleep(1)
+    sign_up_send_btn.click()
+    time.sleep(2)
+    result_message = browser.find_element_by_xpath('//div[@class="swal-title"]')
+    result_reason = browser.find_element_by_xpath('//div[@class="swal-text"]')
+    try:
+        assert result_message.text == "Welcome!"
+        assert result_reason.text == "Your registration was successful!"
+        print('Sikeres regisztráció')
+    except AssertionError:
+        print('Sikertelen regisztráció')
+
+    ok_btn = browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
+    ok_btn.click()
+
+
+# // Teszteset 03 \\ Bejelentkezés
+
 def sign_in():
     home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
     home_sign_in_btn.click()
     email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    email_input.send_keys(user1["email"])
+    email_input.send_keys(random_email)
     password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    password_input.send_keys(user1["password"])
+    password_input.send_keys(user["password"])
     sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
     sign_in_btn.click()
     time.sleep(2)
@@ -32,29 +78,24 @@ def sign_in():
         print('Nem sikerült bejelentkezni')
 
 
-sign_in()
-
-
 # // Teszteset 05 \\ Adatok listázása
 
-
-def popular_tag_list():
-    popular_tags = browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
-    list_of_tags = []
-    for i, j in enumerate(popular_tags):
-        list_of_tags.append(f'{i + 1}. elem: {j.text}')
-    print(f'Popular Tags: {list_of_tags}')
-    try:
-        assert len(list_of_tags) == len(popular_tags)
-        print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
-    except AssertionError:
-        print('Helytelen lista')
-
+# def popular_tag_list():
+#     popular_tags = browser.find_elements_by_xpath('//div[@class="sidebar"]//a[@class="tag-pill tag-default"]')
+#     list_of_tags = []
+#     for i, j in enumerate(popular_tags):
+#         list_of_tags.append(f'{i + 1}. elem: {j.text}')
+#     print(f'Popular Tags: {list_of_tags}')
+#     try:
+#         assert len(list_of_tags) == len(popular_tags)
+#         print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
+#     except AssertionError:
+#         print('Helytelen lista')
+#
 #
 # popular_tag_list()
 
-
-# // Teszteset 07 \\ Több oldalas lista bejárása
+# // Teszteset 06 \\ Több oldalas lista bejárása
 
 # def page_navigation():
 #     index_page_list = browser.find_elements_by_xpath('//a[@class="page-link"]')
@@ -102,3 +143,21 @@ def popular_tag_list():
 #     print('Helytelen validáció')
 
 # browser.quit()
+
+
+# // Teszteset 12 \\ Kijelentkezés
+
+def logout():
+    logout_btn = browser.find_element_by_xpath('//a[@active-class="active"]')
+    logout_btn.click()
+    home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+    try:
+        assert home_sign_in_btn.text == "Sign in"
+        print('Sikeres kijelentkezés')
+    except AssertionError:
+        print('Nem sikerült kijelentkezni')
+
+
+registration_valid()
+logout()
+sign_in()
