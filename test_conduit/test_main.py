@@ -98,7 +98,6 @@ class TestConduit(object):
         home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
         home_sign_in_btn.click()
         email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-        # email_input.send_keys(user1["email"])
         email_input.send_keys(self.random_email)
         password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
         password_input.send_keys(user1["password"])
