@@ -93,7 +93,7 @@ class TestConduit(object):
         except AssertionError:
             print('Nem sikerült kijelentkezni')
 
-    // Teszteset 03 \\ Bejelentkezés
+    # // Teszteset 03 \\ Bejelentkezés
     def test_sign_in(self):
         home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
         home_sign_in_btn.click()
