@@ -157,7 +157,7 @@ class TestConduit(object):
     # // Teszteset 07 \\ Új adatbevitel
 
     def test_adding_new_input(self):
-        # TestConduit.test_sign_in(self)  # bejelentkezés meghívása
+        TestConduit.test_sign_in(self)  # bejelentkezés meghívása
         new_article_btn = self.browser.find_element_by_xpath('//a[@href="#/editor"]')
         new_article_btn.click()
         time.sleep(2)
