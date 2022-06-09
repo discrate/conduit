@@ -1,5 +1,8 @@
 import time
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from test_conduit.input_test_data import *
 import random
@@ -39,6 +42,7 @@ def registration_valid():
     username_input.send_keys(random_name)
     email_input.send_keys(random_email)
     password_input.send_keys(user["password"])
+    print(random_email)
     time.sleep(1)
     sign_up_send_btn.click()
     time.sleep(2)
@@ -56,26 +60,26 @@ def registration_valid():
 
 
 # // Teszteset 03 \\ Bejelentkezés
-
-def sign_in():
-    home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-    home_sign_in_btn.click()
-    email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    email_input.send_keys(random_email)
-    password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    password_input.send_keys(user["password"])
-    sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    sign_in_btn.click()
-    time.sleep(2)
-    # user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-    user_profile = browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
-    print(user_profile.text)
-
-    try:
-        assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-        print('Sikeres bejelentkezés')
-    except AssertionError:
-        print('Nem sikerült bejelentkezni')
+#
+# def sign_in():
+#     home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+#     home_sign_in_btn.click()
+#     email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
+#     email_input.send_keys(random_email)
+#     password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
+#     password_input.send_keys(user["password"])
+#     sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+#     sign_in_btn.click()
+#     time.sleep(2)
+#     # user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+#     user_profile = browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
+#     print(user_profile.text)
+#
+#     try:
+#         assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+#         print('Sikeres bejelentkezés')
+#     except AssertionError:
+#         print('Nem sikerült bejelentkezni')
 
 
 # // Teszteset 05 \\ Adatok listázása
@@ -145,19 +149,38 @@ def sign_in():
 # browser.quit()
 
 
+# // Teszteset 08 \\ Ismételt és sorozatos adatbevitel adatforrásból
+
+def change_profile_pic():
+    settings_btn = browser.find_element_by_xpath('//a[@href="#/settings"]')
+    settings_btn.click()
+    image_path = browser.find_element_by_xpath('//input[@placeholder="URL of profile picture"]')
+    image_path.clear()
+    image_path.send_keys(profile_pic['Rick1'])
+    update_settings_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+    update_settings_btn.click()
+    ok_btn = browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
+    ok_btn.click()
+    user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+    user_profile.click()
+    time.sleep(2)
+    # img_source= WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, '//img[@class="user-img"]'))).get_attribute("src")
+    img_source = browser.find_element_by_xpath('//img[@class="user-img"]').get_attribute("src")
+    print(img_source)
+    assert img_source == profile_pic['Rick1']
+
 # // Teszteset 12 \\ Kijelentkezés
 
-def logout():
-    logout_btn = browser.find_element_by_xpath('//a[@active-class="active"]')
-    logout_btn.click()
-    home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-    try:
-        assert home_sign_in_btn.text == "Sign in"
-        print('Sikeres kijelentkezés')
-    except AssertionError:
-        print('Nem sikerült kijelentkezni')
-
-
+# def logout():
+#     logout_btn = browser.find_element_by_xpath('//a[@active-class="active"]')
+#     logout_btn.click()
+#     home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+#     try:
+#         assert home_sign_in_btn.text == "Sign in"
+#         print('Sikeres kijelentkezés')
+#     except AssertionError:
+#         print('Nem sikerült kijelentkezni')
+#
+#
 registration_valid()
-logout()
-sign_in()
+change_profile_pic()
