@@ -20,10 +20,10 @@ user = {
 }
 
 article = {
-    "title": "cím2",
-    "about": "valami2",
-    "body": "idézet szövege2",
-    "tag": "valami2"
+    "title": "cím3",
+    "about": "valami3",
+    "body": "idézet szövege3",
+    "tag": "valami3"
 }
 
 #     "title": "Müller Péter",

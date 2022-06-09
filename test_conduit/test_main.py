@@ -114,45 +114,45 @@ class TestConduit(object):
             print('Nem sikerült bejelentkezni')
 
     # // Teszteset 04 \\ Adatkezelési nyilatkozat használata
-    #     def test_accept_cookies(self):
-    #         accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
-    #         accept_btn.click()
-    #         time.sleep(1)
-    #         decline_btn_list = self.browser.find_elements_by_xpath('//div[normalize-space()="I decline!"]')
-    #         print(len(decline_btn_list))
-    #         try:
-    #             assert len(decline_btn_list) == 0
-    #         except AssertionError:
-    #             print('Hiba merült fel a cookie-kal kapcsolatban.')
+    def test_accept_cookies(self):
+        accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
+        accept_btn.click()
+        time.sleep(1)
+        decline_btn_list = self.browser.find_elements_by_xpath('//div[normalize-space()="I decline!"]')
+        print(len(decline_btn_list))
+        try:
+            assert len(decline_btn_list) == 0
+        except AssertionError:
+            print('Hiba merült fel a cookie-kal kapcsolatban.')
 
     # // Teszteset 05 \\ Adatok listázása
 
-    # def test_popular_tag_list(self):
-    #     popular_tags = self.browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
-    #     list_of_tags = []
-    #     for i, j in enumerate(popular_tags):
-    #         list_of_tags.append(f'{i + 1}. elem: {j.text}')
-    #     print(f'Popular Tags: {list_of_tags}')
-    #     try:
-    #         assert len(list_of_tags) == len(popular_tags)
-    #         print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
-    #     except AssertionError:
-    #         print('Helytelen lista')
+    def test_popular_tag_list(self):
+        popular_tags = self.browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
+        list_of_tags = []
+        for i, j in enumerate(popular_tags):
+            list_of_tags.append(f'{i + 1}. elem: {j.text}')
+        print(f'Popular Tags: {list_of_tags}')
+        try:
+            assert len(list_of_tags) == len(popular_tags)
+            print(f'Helyes lista, elemek száma: {len(list_of_tags)}')
+        except AssertionError:
+            print('Helytelen lista')
 
     # // Teszteset 06 \\ Több oldalas lista bejárása
 
-    # def test_page_navigation(self):
-    #     TestConduit.test_sign_in(self)
-    #     index_page_list = self.browser.find_elements_by_xpath('//a[@class="page-link"]')
-    #     for i in range(len(index_page_list)):
-    #         page_button = index_page_list[i]
-    #         page_button.click()
-    #     time.sleep(1)
-    #     try:
-    #         assert index_page_list[-1].text == f'{len(index_page_list)}'
-    #         print('Számozás rendben')
-    #     except AssertionError:
-    #         print('Számozás nincs rendben')
+    def test_page_navigation(self):
+        TestConduit.test_sign_in(self)
+        index_page_list = self.browser.find_elements_by_xpath('//a[@class="page-link"]')
+        for i in range(len(index_page_list)):
+            page_button = index_page_list[i]
+            page_button.click()
+        time.sleep(1)
+        try:
+            assert index_page_list[-1].text == f'{len(index_page_list)}'
+            print('Számozás rendben')
+        except AssertionError:
+            print('Számozás nincs rendben')
 
     # // Teszteset 07 \\ Új adatbevitel
 
