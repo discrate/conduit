@@ -156,26 +156,26 @@ class TestConduit(object):
 
     # // Teszteset 07 \\ Új adatbevitel
 
-    # def test_adding_new_input(self):
-    #     TestConduit.test_sign_in(self)  # bejelentkezés meghívása
-    #     new_article_btn = self.browser.find_element_by_xpath('//a[@href="#/editor"]')
-    #     new_article_btn.click()
-    #     time.sleep(2)
-    #     article_title = self.browser.find_element_by_xpath('//input[@placeholder ="Article Title"]')
-    #     article_title.send_keys(article['title'])
-    #     article_about = self.browser.find_element_by_xpath('//input[contains(@placeholder, "this article about?")]')
-    #     article_about.send_keys(article['about'])
-    #     article_body = self.browser.find_element_by_xpath('//textarea[@placeholder ="Write your article (in markdown)"]')
-    #     article_body.send_keys(article['body'])
-    #     article_tag = self.browser.find_element_by_xpath('//input[@placeholder ="Enter tags"]')
-    #     article_tag.send_keys(article['tag'])
-    #     publish_article_btn = self.browser.find_element_by_xpath('//button[@type="submit"]')
-    #     publish_article_btn.click()
-    #     time.sleep(2)
-    #     created_body = self.browser.find_element_by_xpath('//p')
-    #     try:
-    #         assert created_body.text == article['body']
-    #         print('Helyesen létrehozva')
-    #     except AssertionError:
-    #         print('Helytelen cikk')
+    def test_adding_new_input(self):
+        # TestConduit.test_sign_in(self)  # bejelentkezés meghívása
+        new_article_btn = self.browser.find_element_by_xpath('//a[@href="#/editor"]')
+        new_article_btn.click()
+        time.sleep(2)
+        article_title = self.browser.find_element_by_xpath('//input[@placeholder ="Article Title"]')
+        article_title.send_keys(article['title'])
+        article_about = self.browser.find_element_by_xpath('//input[contains(@placeholder, "this article about?")]')
+        article_about.send_keys(article['about'])
+        article_body = self.browser.find_element_by_xpath('//textarea[@placeholder ="Write your article (in markdown)"]')
+        article_body.send_keys(article['body'])
+        article_tag = self.browser.find_element_by_xpath('//input[@placeholder ="Enter tags"]')
+        article_tag.send_keys(article['tag'])
+        publish_article_btn = self.browser.find_element_by_xpath('//button[@type="submit"]')
+        publish_article_btn.click()
+        time.sleep(2)
+        created_body = self.browser.find_element_by_xpath('//p')
+        try:
+            assert created_body.text == article['body']
+            print('Helyesen létrehozva')
+        except AssertionError:
+            print('Helytelen cikk')
 
