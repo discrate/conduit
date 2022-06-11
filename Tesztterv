@@ -8,7 +8,7 @@ OK  05. Adatok listázása    ----->  test_popular_tag_list  (??? 178ms)
 OK  06. Több oldalas lista bejárása     ----->  test_page_navigation
 OK  07. Új adat bevitel     ----->  test_adding_new_input
     08. Ismételt és sorozatos adatbevitel adatforrásból
-    09. Meglevő adat módosítás
+OK  09. Meglevő adat módosítás
     10. Adat vagy adatok törlése
     11. Adatok lementése felületről
 OK  12. Kijelentkezés -----> test_logout()

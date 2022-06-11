@@ -1,6 +1,9 @@
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import time
 import random
 import string
@@ -190,7 +193,24 @@ class TestConduit(object):
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
         user_profile.click()
         time.sleep(2)
-        # img_source= WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, '//img[@class="user-img"]'))).get_attribute("src")
+        # img_source= WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH,
+        # '//img[@class="user-img"]'))).get_attribute("src")
         img_source = self.browser.find_element_by_xpath('//img[@class="user-img"]').get_attribute("src")
         print(img_source)
         assert img_source == profile_pic['Rick1']
+
+    # // Teszteset 10 \\ Adat vagy adatok törlése (komment hozzáadása, majd eltávolítása)
+    def test_delete_data(self):
+        first_article = self.browser.find_elements_by_xpath('//h1')[1]
+        first_article.click()
+        comment_box = WebDriverWait(self.browser, 5).until(
+            EC.presence_of_element_located((By.XPATH, '//textarea[@placeholder="Write a comment..."]')))
+        comments_list_before = self.browser.find_elements_by_xpath('//div[@class="card"]')
+        comment_box.send_keys(comment["comment1"])
+        post_comment_btn = self.browser.find_element_by_xpath('//button[text()="Post Comment"]')
+        post_comment_btn.click()
+        delete_btn = self.browser.find_element_by_xpath('//i[@class="ion-trash-a"]')
+        delete_btn.click()
+        time.sleep(1)
+        comments_list_after = self.browser.find_elements_by_xpath('//div[@class="card"]')
+        assert len(comments_list_after) == len(comments_list_before) - 1
