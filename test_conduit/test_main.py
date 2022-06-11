@@ -214,4 +214,4 @@ class TestConduit(object):
         delete_btn.click()
         time.sleep(1)
         comments_list_after = self.browser.find_elements_by_xpath('//div[@class="card"]')
-        assert len(comments_list_after) == len(comments_list_before) - 1
+        assert len(comments_list_after) == len(comments_list_before)
