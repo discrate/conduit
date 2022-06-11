@@ -149,7 +149,7 @@ def registration_valid():
 # browser.quit()
 
 
-# // Teszteset 08 \\ Ismételt és sorozatos adatbevitel adatforrásból
+# // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input file-ból)
 
 def change_profile_pic():
     settings_btn = browser.find_element_by_xpath('//a[@href="#/settings"]')
