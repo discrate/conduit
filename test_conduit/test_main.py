@@ -179,7 +179,7 @@ class TestConduit(object):
             print('Helytelen cikk')
 
     # // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input file-ból)
-    def change_profile_pic(self):
+    def test_change_profile_pic(self):
         TestConduit.test_sign_in(self)
         settings_btn = self.browser.find_element_by_xpath('//a[@href="#/settings"]')
         settings_btn.click()
