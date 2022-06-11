@@ -201,6 +201,7 @@ class TestConduit(object):
 
     # // Teszteset 10 \\ Adat vagy adatok törlése (komment hozzáadása, majd eltávolítása)
     def test_delete_data(self):
+        TestConduit.test_sign_in(self)
         first_article = self.browser.find_elements_by_xpath('//h1')[1]
         first_article.click()
         comment_box = WebDriverWait(self.browser, 5).until(
