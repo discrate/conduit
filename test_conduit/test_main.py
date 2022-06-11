@@ -20,30 +20,30 @@ class TestConduit(object):
         self.browser.get(URL)
         self.browser.maximize_window()
 
-    # def teardown(self):
-    #     self.browser.quit()
+    def teardown(self):
+        self.browser.quit()
 
     # // Teszteset 01 \\ Regisztráció helytelen adatokkal (helytelen email címmel)
-    # def test_registration_invalid(self):
-    #     sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
-    #     sign_up_btn.click()
-    #     username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
-    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    #     sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    #     username_input.send_keys(user["name"])
-    #     email_input.send_keys("szgteszt1_gmail.com")    # helytelen email formátum szándékos megadása
-    #     password_input.send_keys(user["password"])
-    #     sign_up_send_btn.click()
-    #     time.sleep(2)
-    #     result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
-    #     result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
-    #     try:
-    #         assert result_message.text == "Registration failed!"
-    #         assert result_reason.text == "Email must be a valid email."
-    #         print('Helyes hibaüzenet')
-    #     except AssertionError:
-    #         print('Helytelen validáció')
+    def test_registration_invalid(self):
+        sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
+        sign_up_btn.click()
+        username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
+        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+        sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+        username_input.send_keys(user["name"])
+        email_input.send_keys("szgteszt1_gmail.com")  # helytelen email formátum szándékos megadása
+        password_input.send_keys(user["password"])
+        sign_up_send_btn.click()
+        time.sleep(2)
+        result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
+        result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
+        try:
+            assert result_message.text == "Registration failed!"
+            assert result_reason.text == "Email must be a valid email."
+            print('Helyes hibaüzenet')
+        except AssertionError:
+            print('Helytelen validáció')
 
     # // Teszteset 02 \\ Regisztráció helyes adatokkal (létrehozott random felhasználónévvel és email címmel)
     def name_gen(y):
