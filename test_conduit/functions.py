@@ -1,15 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-import time
-import random
-import string
-from input_test_data import *
-
-
 def registration_invalid(browser, username, email, password):
     sign_up_btn = browser.find_element_by_xpath('//a[@href="#/register"]')
     sign_up_btn.click()
