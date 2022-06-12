@@ -69,33 +69,31 @@ class TestConduit(object):
     email_gen(1)
     random_email = email_gen(10) + "@gmail.com"
 
-    #
-    # def test_registration_valid(self):
-    #     sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
-    #     sign_up_btn.click()
-    #     username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
-    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    #     sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    #     username_input.send_keys(self.random_name)
-    #     email_input.send_keys(self.random_email)
-    #     password_input.send_keys(user["password"])
-    #     time.sleep(1)
-    #     sign_up_send_btn.click()
-    #     time.sleep(2)
-    #     result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
-    #     result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
-    #     try:
-    #         assert result_message.text == "Welcome!"
-    #         assert result_reason.text == "Your registration was successful!"
-    #         print('Sikeres regisztráció')
-    #     except AssertionError:
-    #         print('Sikertelen regisztráció')
-    #
-    #     ok_btn = self.browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
-    #     ok_btn.click()
-    #
-    #
+    def test_registration_valid(self):
+        sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
+        sign_up_btn.click()
+        username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
+        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+        sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+        username_input.send_keys(self.random_name)
+        email_input.send_keys(self.random_email)
+        password_input.send_keys(user["password"])
+        time.sleep(1)
+        sign_up_send_btn.click()
+        time.sleep(2)
+        result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
+        result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
+        try:
+            assert result_message.text == "Welcome!"
+            assert result_reason.text == "Your registration was successful!"
+            print('Sikeres regisztráció')
+        except AssertionError:
+            print('Sikertelen regisztráció')
+
+        ok_btn = self.browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
+        ok_btn.click()
+
     # # // Teszteset 03 \\ Bejelentkezés (felhasználó bejelentkezése helyes email cím és jelszó megadásával)
     def test_sign_in(self):
         home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
