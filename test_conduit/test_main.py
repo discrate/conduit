@@ -33,7 +33,6 @@ class TestConduit(object):
         assert result_message.text == "Registration failed!"
         assert result_reason.text == "Email must be a valid email."
 
-
         # // Teszteset 01 \\ Regisztráció helytelen adatokkal (helytelen email címmel)
 
     # def test_registration_invalid(self):
@@ -44,7 +43,7 @@ class TestConduit(object):
     #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
     #     sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
     #     username_input.send_keys(user["name"])
-    #     email_input.send_keys("szgteszt1_gmail.com")  # helytelen email formátum szándékos megadása
+    #     email_input.send_keys(user["email"])  # helytelen email formátum szándékos megadása
     #     password_input.send_keys(user["password"])
     #     sign_up_send_btn.click()
     #     time.sleep(2)
@@ -95,37 +94,27 @@ class TestConduit(object):
     #     ok_btn = self.browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
     #     ok_btn.click()
     #
-    # # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkeztetése)
-    # def test_logout(self):
-    #     TestConduit.test_sign_in(self)
-    #     logout_btn = self.browser.find_element_by_xpath('//a[@active-class="active"]')
-    #     logout_btn.click()
-    #     home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-    #     try:
-    #         assert home_sign_in_btn.text == "Sign in"
-    #         print('Sikeres kijelentkezés')
-    #     except AssertionError:
-    #         print('Nem sikerült kijelentkezni')
     #
     # # // Teszteset 03 \\ Bejelentkezés (felhasználó bejelentkezése helyes email cím és jelszó megadásával)
-    # def test_sign_in(self):
-    #     home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-    #     home_sign_in_btn.click()
-    #     email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    #     email_input.send_keys(self.random_email)
-    #     password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    #     password_input.send_keys(user1["password"])
-    #     sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    #     sign_in_btn.click()
-    #     time.sleep(2)
-    #     # user_profile = self.browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
-    #     user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-    #     time.sleep(2)
-    #     try:
-    #         assert user_profile.text == self.random_name  # user1["name"] helyes felhasználónév megjelenítésének ellenőrzése
-    #         print('Sikeres bejelentkezés')
-    #     except AssertionError:
-    #         print('Nem sikerült bejelentkezni')
+    def test_sign_in(self):
+        home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+        home_sign_in_btn.click()
+        email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
+        email_input.send_keys(self.random_email)
+        password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
+        password_input.send_keys(user1["password"])
+        sign_in_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+        sign_in_btn.click()
+        time.sleep(2)
+        # user_profile = self.browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
+        user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+        time.sleep(2)
+        try:
+            assert user_profile.text == self.random_name  # user1["name"] helyes felhasználónév megjelenítésének ellenőrzése
+            print('Sikeres bejelentkezés')
+        except AssertionError:
+            print('Nem sikerült bejelentkezni')
+
     #
     # # // Teszteset 04 \\ Adatkezelési nyilatkozat használata (cookiek elfogadása)
     # def test_accept_cookies(self):
@@ -227,3 +216,15 @@ class TestConduit(object):
     #     time.sleep(1)
     #     comments_list_after = self.browser.find_elements_by_xpath('//div[@class="card"]')
     #     assert len(comments_list_after) == len(comments_list_before)
+
+    # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkeztetése)
+    def test_logout(self):
+        TestConduit.test_sign_in(self)
+        logout_btn = self.browser.find_element_by_xpath('//a[@active-class="active"]')
+        logout_btn.click()
+        home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+        try:
+            assert home_sign_in_btn.text == "Sign in"
+            print('Sikeres kijelentkezés')
+        except AssertionError:
+            print('Nem sikerült kijelentkezni')
