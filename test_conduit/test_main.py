@@ -26,7 +26,7 @@ class TestConduit(object):
 
     # // Teszteset 01 \\ Regisztráció helytelen adatokkal (helytelen email címmel)
     def test_registration_invalid(self):
-        registration_invalid(self, user["name"], user["email"], user["password"])
+        registration_invalid(self.browser, user["name"], user["email"], user["password"])
         time.sleep(2)
         result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
         result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
