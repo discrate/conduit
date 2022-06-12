@@ -57,17 +57,18 @@ class TestConduit(object):
     #         print('Helytelen validáció')
 
     # // Teszteset 02 \\ Regisztráció helyes adatokkal (létrehozott random felhasználónévvel és email címmel)
-    # def name_gen(y):
-    #     return ''.join(random.choice(string.ascii_letters) for x in range(y))
-    #
-    # name_gen(1)
-    # random_name = name_gen(10)
-    #
-    # def email_gen(y):
-    #     return ''.join(random.choice(string.ascii_letters) for x in range(y))
-    #
-    # email_gen(1)
-    # random_email = email_gen(10) + "@gmail.com"
+    def name_gen(y):
+        return ''.join(random.choice(string.ascii_letters) for x in range(y))
+
+    name_gen(1)
+    random_name = name_gen(10)
+
+    def email_gen(y):
+        return ''.join(random.choice(string.ascii_letters) for x in range(y))
+
+    email_gen(1)
+    random_email = email_gen(10) + "@gmail.com"
+
     #
     # def test_registration_valid(self):
     #     sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
