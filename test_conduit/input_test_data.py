@@ -13,9 +13,9 @@ user2 = {
 }
 
 user = {
-    "counter": 990,
+    # "counter": 990,
     "name": "szgtest",
-    "domain": "gmail.com",
+    "email": "szgtest_gmail.com",
     "password": "Tesztelek1"
 }
 
