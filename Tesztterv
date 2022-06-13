@@ -4,12 +4,12 @@ OK  01. Regisztráció helytelen adatokkal    ----->  test_registration_invalid(
 OK  02. Regisztráció helyes adatokkal   ----->  test_registration_valid()
 OK  03. Bejelentkezés   ----->  sign_in()  GIT: IndexError: list index out of range - fixed
 OK  04. Adatkezelési nyilatkozat használata     ----->  test_accept_cookies()
-OK  05. Adatok listázása    ----->  test_popular_tag_list                                (??? 178 ms)
+OK  05. Adatok listázása    ----->  test_popular_tag_list                                (??? 175 ms)
 OK  06. Több oldalas lista bejárása     ----->  test_page_navigation
 OK  07. Új adat bevitel     ----->  test_adding_new_input
     08. Ismételt és sorozatos adatbevitel adatforrásból
 OK  09. Meglevő adat módosítás  ----->  test_change_profile_pic
-OK  10. Adat vagy adatok törlése    ----->  test_delete_data                             (??? 25 sec)
+OK  10. Adat vagy adatok törlése    ----->  test_delete_data                             (??? 26 sec)
     11. Adatok lementése felületről
 OK  12. Kijelentkezés -----> test_logout()
 
