@@ -88,7 +88,7 @@ class TestConduit(object):
 
         # ------------------------------------------------------------------------------------------------------------------
         # // Teszteset 04 \\ Adatkezelési nyilatkozat használata (cookiek elfogadása)
-        # def test_accept_cookies(self):
+    def test_accept_cookies(self):
         accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
         accept_btn.click()
         time.sleep(1)
