@@ -14,8 +14,8 @@ jobs:
     - name: Docker build for test
       run: docker-compose up -d
     
-    - name: Sleep for 60 seconds
-      run: sleep 60s
+    - name: Sleep for 20 seconds
+      run: sleep 20s
       shell: bash
 
     - name: Set up Python. Version 3.9.5
