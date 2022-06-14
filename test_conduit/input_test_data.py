@@ -37,6 +37,11 @@ profile_pic = {
     "Rick2": "https://i.pinimg.com/736x/79/5f/8e/795f8ef1298ab6adea6073bea4e21b5f.jpg"
 }
 
+messages = {
+    "failed": "Registration failed!",
+    "valid": "Email must be a valid email."
+}
+
 comment = {
     "comment1": "ez egy világos hozzászólás"
 }
