@@ -39,7 +39,9 @@ profile_pic = {
 
 messages = {
     "failed": "Registration failed!",
-    "valid": "Email must be a valid email."
+    "valid": "Email must be a valid email.",
+    "welcome": "Welcome!",
+    "success": "Your registration was successful!"
 }
 
 comment = {
