@@ -4,14 +4,6 @@ user1 = {
     "password": "Tesztelek1"
 }
 
-# user2 = {
-#     "name": "szgteszt2",
-#     "email": "szgteszt2@gmail.com",
-#     "password": "Tesztelek2",
-#     "article2": "Az összevisszaságban találd meg az egyszerűséget, a hangzavarban a harmóniát. A nehézségek közt mindig ott van a lehetőség.",
-#     "comment2": "ez egy értelmes hozzászólás"
-# }
-
 user = {
     "name": "szgtest",
     "email": "szgtest_gmail.com",
@@ -34,7 +26,6 @@ article = {
 profile_pic = {
     "Default": "https://static.productionready.io/images/smiley-cyrus.jpg",
     "Rick1": "https://decider.com/wp-content/uploads/2021/03/rick-and-morty-s5-5.jpg",
-    "Rick2": "https://i.pinimg.com/736x/79/5f/8e/795f8ef1298ab6adea6073bea4e21b5f.jpg"
 }
 
 messages = {
