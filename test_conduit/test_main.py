@@ -24,15 +24,17 @@ class TestConduit(object):
     def teardown(self):
         self.browser.quit()
 
+    # ------------------------------------------------------------------------------------------------------------------
     # // Teszteset 01 \\ Regisztráció helytelen adatokkal (helytelen email címmel) v0.2
     # def test_registration_invalid(self):
-    #     registration_valid(self.browser, user["name"], user["email"], user["password"])
+    #     registration(self.browser, user["name"], user["email"], user["password"]) # szándékosan helytelenül megadott email cím
     #     time.sleep(2)
     #     result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
     #     result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
     #     assert result_message.text == messages["failed"]
     #     assert result_reason.text == messages["valid"]
 
+    #------------------------------------------------------------------------------------------------------------------
     # // Teszteset 02 \\ Regisztráció helyes adatokkal (létrehozott random felhasználónévvel és email címmel)
     def name_gen(y):
         return ''.join(random.choice(string.ascii_letters) for x in range(y))
@@ -46,19 +48,8 @@ class TestConduit(object):
     email_gen(1)
     random_email = email_gen(10) + "@gmail.com"
 
-    def test_registration_valid(self):  # kiszervezés
-        # sign_up_btn = self.browser.find_element_by_xpath('//a[@href="#/register"]')
-        # sign_up_btn.click()
-        # username_input = self.browser.find_element_by_xpath('//input[@placeholder="Username"]')
-        # email_input = self.browser.find_element_by_xpath('//input[@placeholder="Email"]')
-        # password_input = self.browser.find_element_by_xpath('//input[@placeholder="Password"]')
-        # sign_up_send_btn = self.browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-        # username_input.send_keys(self.random_name)
-        # email_input.send_keys(self.random_email)
-        # password_input.send_keys(user["password"])
-        # time.sleep(1)
-        # sign_up_send_btn.click()
-        registration_valid(self.browser, self.random_name, self.random_email, user["password"])
+    def test_registration_valid(self):
+        registration(self.browser, self.random_name, self.random_email, user["password"])
         time.sleep(2)
         result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
         result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
@@ -71,6 +62,7 @@ class TestConduit(object):
         ok_btn = self.browser.find_element_by_xpath('//button[@class="swal-button swal-button--confirm"]')
         ok_btn.click()
 
+    #------------------------------------------------------------------------------------------------------------------
     # // Teszteset 03 \\ Bejelentkezés (felhasználó bejelentkezése helyes email cím és jelszó megadásával)
     def test_sign_in(self):
         home_sign_in_btn = self.browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
@@ -91,6 +83,7 @@ class TestConduit(object):
         except AssertionError:
             print('Nem sikerült bejelentkezni')
 
+    #------------------------------------------------------------------------------------------------------------------
     # // Teszteset 04 \\ Adatkezelési nyilatkozat használata (cookiek elfogadása)
     # def test_accept_cookies(self):
     #     accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
@@ -101,7 +94,8 @@ class TestConduit(object):
     #         assert len(decline_btn_list) == 0
     #     except AssertionError:
     #         print('Hiba merült fel a cookie-kal kapcsolatban.')
-
+    #
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 05 \\ Adatok listázása ("Popular tag"-ek listázása)
     # def test_popular_tag_list(self):
     #     popular_tags = self.browser.find_elements_by_xpath('//a[@class="tag-pill tag-default"]')
@@ -114,6 +108,7 @@ class TestConduit(object):
     #     except AssertionError:
     #         print('Helytelen lista')
     #
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 06 \\ Több oldalas lista bejárása (főoldal alján levő navigációs sáv bejárása)
     # def test_page_navigation(self):
     #     TestConduit.test_sign_in(self)
@@ -128,6 +123,7 @@ class TestConduit(object):
     #     except AssertionError:
     #         print('Számozás nincs rendben')
     #
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 07 \\ Új adatbevitel (új cikk létrehozása)
     # def test_adding_new_input(self):
     #     TestConduit.test_sign_in(self)
@@ -152,6 +148,7 @@ class TestConduit(object):
     #     except AssertionError:
     #         print('Helytelen cikk')
     #
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input file-ból)
     def test_change_profile_pic(self):
         TestConduit.test_sign_in(self)
@@ -166,17 +163,18 @@ class TestConduit(object):
         ok_btn.click()
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
         user_profile.click()
-        time.sleep(2)
+        # time.sleep(2)
         img_source = WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.XPATH,
                                                                                            '//img[@class="user-img"]'))).get_attribute(
             "src")
         # img_source = self.browser.find_element_by_xpath('//img[@class="user-img"]').get_attribute("src")
         try:
             assert img_source == profile_pic['Rick1']
-            print("Képcsere sikeres volt.")
+            print("Sikeres képcsere")
         except AssertionError:
-            print("Sikertelen képcsere.")
+            print("Sikertelen képcsere")
     #
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 10 \\ Adat vagy adatok törlése (komment hozzáadása, majd eltávolítása)
     # def test_delete_data(self):
     #     TestConduit.test_sign_in(self)
@@ -192,8 +190,13 @@ class TestConduit(object):
     #     delete_btn.click()
     #     time.sleep(1)
     #     comments_list_after = self.browser.find_elements_by_xpath('//div[@class="card"]')
-    #     assert len(comments_list_after) == len(comments_list_before)
+    #     try:
+    #         assert len(comments_list_after) == len(comments_list_before)
+    #         print("Comment eltávolítva")
+    #     except AssertionError:
+    #         print("Hiba történt a comment törlésekor.")
     #
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkeztetése)
     # def test_logout(self):
     #     TestConduit.test_sign_in(self)

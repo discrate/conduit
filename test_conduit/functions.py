@@ -1,4 +1,4 @@
-def registration_valid(browser, username, email, password):
+def registration(browser, username, email, password):
     sign_up_btn = browser.find_element_by_xpath('//a[@href="#/register"]')
     sign_up_btn.click()
     username_input = browser.find_element_by_xpath('//input[@placeholder="Username"]')
