@@ -210,9 +210,9 @@ class TestConduit(object):
                 count += 1
         try:
             assert count == len(popular_tags)
-            print("OK")
+            print("Popular tag lista rendben")
         except AssertionError:
-            print("Not OK")
+            print("Popular tag lista helytelen")
 
     # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkeztetése)
