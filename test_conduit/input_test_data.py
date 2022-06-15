@@ -1,27 +1,22 @@
-user1 = {
-    "name": "szgteszt1",
-    "email": "szgteszt1@gmail.com",
-    "password": "Tesztelek1"
-}
-
 user = {
     "name": "szgtest",
     "email": "szgtest_gmail.com",
     "password": "Tesztelek1"
 }
 
-article = {
-    "title": "cím3",
-    "about": "valami3",
-    "body": "idézet szövege3",
-    "tag": "valami3"
+user1 = {
+    "name": "szgteszt1",
+    "email": "szgteszt1@gmail.com",
+    "password": "Tesztelek1"
 }
 
-#     "title": "Müller Péter",
-#     "about": "idézet",
-#     "body": "Nekünk kell egymással és önmagunk lelkéből tüzet rakni. Hogy melegedhessünk körülötte. Ott, ahol akármilyen kis körben, "
-#             "de szeretet van, jó lesz élni. Ott meghittség lesz. Barátságos világ. Boldogító légkör.",
-#     "tag": "útravaló"
+article = {
+    "title": "Müller Péter",
+    "about": "idézet",
+    "body": "Nekünk kell egymással és önmagunk lelkéből tüzet rakni. Hogy melegedhessünk körülötte. Ott, ahol akármilyen kis körben, "
+            "de szeretet van, jó lesz élni. Ott meghittség lesz. Barátságos világ. Boldogító légkör.",
+    "tag": "útravaló"
+}
 
 profile_pic = {
     "Default": "https://static.productionready.io/images/smiley-cyrus.jpg",

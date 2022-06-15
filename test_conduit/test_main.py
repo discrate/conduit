@@ -1,14 +1,16 @@
-from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-import time
 import random
 import string
+import time
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+
+from function import *
 from input_test_data import *
-from functions import *
 
 
 class TestConduit(object):
@@ -25,9 +27,9 @@ class TestConduit(object):
         self.browser.quit()
 
     # ------------------------------------------------------------------------------------------------------------------
-    # // Teszteset 01 \\ Regisztráció helytelen adatokkal (helytelen email címmel) v0.2
+    # // Teszteset 01 \\ Regisztráció helytelen adatokkal (helytelen email címmel)
     def test_registration_invalid(self):
-        registration(self.browser, user["name"], user["email"], user["password"])  # szándékosan helytelenül megadott email cím
+        registration(self.browser, user["name"], user["email"], user["password"])
         time.sleep(2)
         result_message = self.browser.find_element_by_xpath('//div[@class="swal-title"]')
         result_reason = self.browser.find_element_by_xpath('//div[@class="swal-text"]')
@@ -39,7 +41,7 @@ class TestConduit(object):
             print("Hiányzó elutasító üzenet")
 
     # ------------------------------------------------------------------------------------------------------------------
-    # // Teszteset 02 \\ Regisztráció helyes adatokkal (létrehozott random felhasználónévvel és email címmel)
+    # // Teszteset 02 \\ Regisztráció helyes adatokkal (létrehozott random felhasználónévvel és random email címmel)
     def name_gen(y):
         return ''.join(random.choice(string.ascii_letters) for x in range(y))
 
@@ -81,13 +83,14 @@ class TestConduit(object):
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
         time.sleep(2)
         try:
-            assert user_profile.text == self.random_name  # user1["name"] helyes felhasználónév megjelenítésének ellenőrzése
+            assert user_profile.text == self.random_name
             print('Sikeres bejelentkezés')
         except AssertionError:
             print('Nem sikerült bejelentkezni')
 
         # ------------------------------------------------------------------------------------------------------------------
         # // Teszteset 04 \\ Adatkezelési nyilatkozat használata (cookiek elfogadása)
+
     def test_accept_cookies(self):
         accept_btn = self.browser.find_element_by_xpath('//div[normalize-space()="I accept!"]')
         accept_btn.click()
@@ -152,7 +155,7 @@ class TestConduit(object):
             print('Helytelen cikk')
 
     # ------------------------------------------------------------------------------------------------------------------
-    # # // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input file-ból)
+    # # // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input fileban megadott elérési útvonal alapján)
     def test_change_profile_pic(self):
         TestConduit.test_sign_in(self)
         settings_btn = self.browser.find_element_by_xpath('//a[@href="#/settings"]')
@@ -215,7 +218,7 @@ class TestConduit(object):
             print("Popular tag lista helytelen")
 
     # ------------------------------------------------------------------------------------------------------------------
-    # # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkeztetése)
+    # # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkezése)
     def test_logout(self):
         TestConduit.test_sign_in(self)
         logout_btn = self.browser.find_element_by_xpath('//a[@active-class="active"]')
