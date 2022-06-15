@@ -85,25 +85,25 @@ browser.maximize_window()
 
 # // Teszteset 03 \\ Bejelentkezés
 #
-def sign_in():
-    home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
-    home_sign_in_btn.click()
-    email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
-    email_input.send_keys(user1["email"])
-    password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
-    password_input.send_keys(user1["password"])
-    sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
-    sign_in_btn.click()
-    time.sleep(2)
-    # user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-    user_profile = browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
-    print(user_profile.text)
-
-    try:
-        assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
-        print('Sikeres bejelentkezés')
-    except AssertionError:
-        print('Nem sikerült bejelentkezni')
+# def sign_in():
+#     home_sign_in_btn = browser.find_elements_by_xpath('//a[@href="#/login"]')[0]
+#     home_sign_in_btn.click()
+#     email_input = browser.find_element_by_xpath('//input[@placeholder="Email"]')
+#     email_input.send_keys(user1["email"])
+#     password_input = browser.find_element_by_xpath('//input[@placeholder="Password"]')
+#     password_input.send_keys(user1["password"])
+#     sign_in_btn = browser.find_element_by_xpath('//button[@class="btn btn-lg btn-primary pull-xs-right"]')
+#     sign_in_btn.click()
+#     time.sleep(2)
+#     # user_profile = browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
+#     user_profile = browser.find_element_by_xpath('//a[@href="#/@szgteszt1/" and @class="nav-link"]')
+#     print(user_profile.text)
+#
+#     try:
+#         assert user_profile.text == user1["name"]  # helyes felhasználónév megjelenítésének ellenőrzése
+#         print('Sikeres bejelentkezés')
+#     except AssertionError:
+#         print('Nem sikerült bejelentkezni')
 
 
 # // Teszteset 05 \\ Adatok listázása
@@ -217,6 +217,25 @@ def sign_in():
 #
 # sign_in()
 # delete_data()
+
+
+# // Teszteset 11 \\ Adatok lementése felületről (Popular tag-ek nevének kimentése .txt file-ba)
+
+def export_data():
+    with open("exported.txt", "w", encoding="UTF-8") as output_f:
+        popular_tags = browser.find_elements_by_xpath('//div[@class="sidebar"]//a[@class="tag-pill tag-default"]')
+        output_f.write("Tag-ek listája:" "\n" "_______________" "\n")
+        count = 0
+        for i, j in enumerate(popular_tags):
+            output_f.write(f'{i + 1}. tag: {j.text}' "\n")
+            count += 1
+    try:
+        assert count == len(popular_tags)
+        print("OK")
+    except AssertionError:
+        print("Not OK")
+
+export_data()
 
 # // Teszteset 12 \\ Kijelentkezés
 

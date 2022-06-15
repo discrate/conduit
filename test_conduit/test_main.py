@@ -198,6 +198,23 @@ class TestConduit(object):
             print("Hiba történt a comment törlésekor.")
 
     # ------------------------------------------------------------------------------------------------------------------
+    # // Teszteset 11 \\ Adatok lementése felületről (Popular tag-ek kimentése .txt file-ba)
+
+    def test_export_data(self):
+        with open("exported.txt", "w", encoding="UTF-8") as output_f:
+            popular_tags = self.browser.find_elements_by_xpath('//div[@class="sidebar"]//a[@class="tag-pill tag-default"]')
+            output_f.write("Tag-ek listája:" "\n" "_______________" "\n")
+            count = 0
+            for i, j in enumerate(popular_tags):
+                output_f.write(f'{i + 1}. tag: {j.text}' "\n")
+                count += 1
+        try:
+            assert count == len(popular_tags)
+            print("OK")
+        except AssertionError:
+            print("Not OK")
+
+    # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 12 \\ Kijelentkezés (felhasználó kijelentkeztetése)
     def test_logout(self):
         TestConduit.test_sign_in(self)
