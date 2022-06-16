@@ -187,6 +187,7 @@ class TestConduit(object):
         ok_btn.click()
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
         user_profile.click()
+        time.sleep(1)
         img_source = WebDriverWait(self.browser, 5).until(EC.presence_of_element_located((By.XPATH,
                                                                                           '//img[@class="user-img"]'))).get_attribute(
             "src")
