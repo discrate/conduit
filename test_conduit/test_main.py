@@ -81,7 +81,6 @@ class TestConduit(object):
         sign_in_btn.click()
         time.sleep(2)
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-        # time.sleep(2)
         try:
             assert user_profile.text == self.random_name
             print('Sikeres bejelentkezés')
