@@ -81,7 +81,7 @@ class TestConduit(object):
         sign_in_btn.click()
         time.sleep(2)
         user_profile = self.browser.find_elements_by_xpath('//a[@class="nav-link"]')[2]
-        time.sleep(2)
+        # time.sleep(2)
         try:
             assert user_profile.text == self.random_name
             print('Sikeres bejelentkezés')
@@ -98,6 +98,7 @@ class TestConduit(object):
         decline_btn_list = self.browser.find_elements_by_xpath('//div[normalize-space()="I decline!"]')
         try:
             assert len(decline_btn_list) == 0
+            print("Cookie elfogadás rendben")
         except AssertionError:
             print('Hiba merült fel a cookie-kal kapcsolatban.')
 
