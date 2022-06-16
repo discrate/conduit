@@ -9,6 +9,3 @@ def registration(browser, username, email, password):
     email_input.send_keys(email)
     password_input.send_keys(password)
     sign_up_send_btn.click()
-
-
-

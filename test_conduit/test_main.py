@@ -1,3 +1,4 @@
+import csv
 import random
 import string
 import time
@@ -153,6 +154,24 @@ class TestConduit(object):
             print('Helyesen létrehozva')
         except AssertionError:
             print('Helytelen cikk')
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # // Teszteset 08 \\ Ismételt és sorozatos adatbevitel adatforrásból
+    def test_add_comments_from_input(self):
+        TestConduit.test_sign_in(self)
+        first_article = self.browser.find_elements_by_xpath('//h1')[1]
+        first_article.click()
+        time.sleep(1)
+        # comment_box = self.browser.find_element_by_xpath('//textarea[@placeholder="Write a comment..."]')
+        comment_box = WebDriverWait(self.browser, 5).until(
+            EC.presence_of_element_located((By.XPATH, '//textarea[@placeholder="Write a comment..."]')))
+        with open('test_conduit/input_comments.csv', 'r', encoding='UTF-8') as input_f:
+            text = csv.reader(input_f, delimiter=',')
+            for row in text:
+                comment_box.send_keys(row[1])
+                post_comment_btn = self.browser.find_element_by_xpath('//button[text()="Post Comment"]')
+                post_comment_btn.click()
+                time.sleep(0.3)
 
     # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input fileban megadott elérési útvonal alapján)
