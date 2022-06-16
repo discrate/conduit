@@ -162,7 +162,6 @@ class TestConduit(object):
         first_article = self.browser.find_elements_by_xpath('//h1')[1]
         first_article.click()
         time.sleep(1)
-        # comment_box = self.browser.find_element_by_xpath('//textarea[@placeholder="Write a comment..."]')
         comment_box = WebDriverWait(self.browser, 5).until(
             EC.presence_of_element_located((By.XPATH, '//textarea[@placeholder="Write a comment..."]')))
         with open('test_conduit/input_comments.csv', 'r', encoding='UTF-8') as input_f:
