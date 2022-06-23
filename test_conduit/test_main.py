@@ -138,11 +138,15 @@ class TestConduit(object):
             EC.presence_of_element_located((By.XPATH, '//textarea[@placeholder="Write a comment..."]')))
         with open('test_conduit/input_comments.csv', 'r', encoding='UTF-8') as input_f:
             text = csv.reader(input_f, delimiter=',')
+            counter = 0
             for row in text:
                 comment_box.send_keys(row[1])
                 post_comment_btn = self.browser.find_element_by_xpath('//button[text()="Post Comment"]')
                 post_comment_btn.click()
+                counter += 1
                 time.sleep(0.3)
+        comments_list = self.browser.find_elements_by_xpath('//div[@class="card"]')
+        assert len(comments_list) == counter
 
     # ------------------------------------------------------------------------------------------------------------------
     # # // Teszteset 09 \\ Meglevő adat módosítás (profilkép cseréje input fileban megadott elérési útvonal alapján)
